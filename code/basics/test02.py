@@ -1,9 +1,12 @@
 import time
 import pytest
+import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+
 def test_login():
+    LOGGER = logging.getLogger(__name__)
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get("https://opensource-demo.orangehrmlive.com")
@@ -14,5 +17,7 @@ def test_login():
     email_ele.send_keys("Admin")
     password_ele.send_keys("admin123")
     sign_in_button.click()
-    print(driver.title)
+    LOGGER.info(driver.title)
     assert "OrangeHRM" in driver.title
+
+
